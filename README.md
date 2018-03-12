@@ -13,10 +13,7 @@ As stated, Javascript is prototype based programming. When a function is created
 ```javascript
 function f1() {
   let name = "javascript";
-  function showName () {
-    console.log(`this is a ${name} manual`);
-  }
-  return { showName };
+  return 1;
  }
  ```
  *Test it in console*
