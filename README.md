@@ -3,19 +3,21 @@ Self learning of Javascript in depth
 
 #### Definition: Javascript (JS)
 
-It is a Interpreted or JIT compiled Programming Language with first class function (function treated as variable). Also known as scripting language for web pages. Also used in non-browser environment like node.js, apache couchDB and Adobe Acrobat. JS is prototype-based, dynamci language.
+It is a Interpreted or JIT compiled Programming Language with first class function (function treated as variable). Also known as scripting language for web pages. Also used in non-browser environment like node.js, apache couchDB and Adobe Acrobat. JS is prototype-based, dynamic language.
 
-Protoype-based: is a style of Object Oriented programming in which classes are not explicitly defined, but rather dervied by adding properties and methods to instance of another class or to an empty object.
+Protoype-based: is a style of Object Oriented programming in which classes are not explicitly defined, but rather dervied by adding properties and methods to instance of another object or to an empty object.
 
 ### Prototype:
 
-As stated, Javascript is prototype based programming. When a function is created in JavaScript, JavaScript engine adds a *prototype* property to the function. This prototype property is an object has a constructor property by default. constructor property points back to the function on which prototype object is alive. We can access the function’s prototype property using the syntax functionName.prototype. 
+As stated, Javascript is prototype based programming. When a function is created in JavaScript, JavaScript engine adds a *prototype* property to the function. This prototype property is an object, and it has has a constructor property by default. constructor property points back to the function on which prototype object is alive. We can access the function’s prototype property using the syntax functionName.prototype. 
+
 ```javascript
 function f1() {
   let name = "javascript";
   return 1;
  }
  ```
+ 
  *Test it in console*
  
  ```javascript
@@ -35,4 +37,40 @@ f1.prototype
   >constructor: ƒ f1()
   >__proto__: Object
 ```
+
+
+### Not Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
+
+
+- Most of the non-primitive type has prototype property where all inherited stuff lives. Math doesn't have prototype.
+
+- All `objects` inherit from `Object.prototype` which inherits from null.
+`object` <- `Object.prototype` <- `null`
+
+- All native functions inherit from `Function.prototype` which inherits from `Object.prototype`.
+`function` <- `Function.prototype` <- `Object.prototype` <- `null`
+
+- Arrays inherit from `Array.prototype` which inherits from `Object.prototype`.
+`array` <- `Array.prototype` <- `Object.prototype` <- `null`
+
+
+
+Notes:
+
+[Global object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects) - The term "global objects" (or standard built-in objects) here is not to be confused with the global object. Here, "global objects" refer to objects in the global scope.
+
+Object.keys are not a prototype method of Object type.
+
+
+### Traditional way of wring a class like structure (Constructor Function) vs ES6 Class keyword:
+
+Points to note from the article (attached below):
+
+- body of a function act as constructure in traditional way. 
+- to call parent construcutor (i.e super in ES6), we have to pass reference to parent construcutor (using .call)
+- and to inherit (extend) we need to use Object.create and assign it to child prototype. This is way, we are manually creating the prototype chain between parent and child.
+- use `new` keyword to create instance of the Constructor Function or Class
+
+https://medium.com/@apalshah/javascript-class-difference-between-es5-and-es6-classes-a37b6c90c7f8
+
 
