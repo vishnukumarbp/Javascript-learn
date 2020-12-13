@@ -74,3 +74,17 @@ Points to note from the article (attached below):
 https://medium.com/@apalshah/javascript-class-difference-between-es5-and-es6-classes-a37b6c90c7f8
 
 
+
+## Nullish coalescing operator '??'
+?? returns the first argument if it’s not null/undefined. Otherwise, the second one.
+
+#### || vs ??
+
+|| doesn’t distinguish between false, 0, an empty string "" and null/undefined. They are all the same – falsy values. If any of these is the first argument of ||, then we’ll get the second argument as the result.
+
+```javascript
+let height = 0;
+
+alert(height || 100); // 100
+alert(height ?? 100); // 0
+```
