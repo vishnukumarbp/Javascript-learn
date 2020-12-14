@@ -37,10 +37,12 @@ f1.prototype
   >constructor: ƒ f1()
   >__proto__: Object
 ```
-## Lexical Scoping:
+## Lexical Scoping: (also called as static scoping)
 Lexical Scoping defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.
 
 "Even if the parent function has returned" is called **closure**
+
+Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
 
 
 ### Not Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
