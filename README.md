@@ -189,3 +189,56 @@ The optional chaining ?. stops the evaluation if the part before ?. is undefined
 ### Other variants: ?.(), ?.[]
 `userAdmin.admin?.();`
 `userAdmin?.[key];`
+
+## Symbols
+A “symbol” represents a unique identifier.
+
+A value of this type can be created using Symbol():
+
+```javascript
+// id is a new symbol
+let id = Symbol();
+```
+We can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+
+```javascript
+// id is a symbol with the description "id"
+let id = Symbol("id");
+```
+
+Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn’t affect anything.
+
+To print: use .toString() on symbol
+```javascript
+let id = Symbol("id");
+alert(id.toString()); // Symbol(id), now it works
+```
+
+### “Hidden” properties
+Symbols allow us to create “hidden” properties of an object, that no other part of code can accidentally access or overwrite.
+
+Symbols are skipped by for…in, also by Object.keys(symbol)
+
+### Global symbols
+As we’ve seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol "id" meaning exactly the same property.
+
+To achieve that, there exists a global symbol registry. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+
+In order to read (create if absent) a symbol from the registry, use Symbol.for(key).
+
+That call checks the global registry, and if there’s a symbol described as key, then returns it, otherwise creates a new symbol Symbol(key) and stores it in the registry by the given key.
+
+For instance:
+
+```javascript
+// read from the global registry
+let id = Symbol.for("id"); // if the symbol did not exist, it is created
+
+// read it again (maybe from another part of the code)
+let idAgain = Symbol.for("id");
+
+// the same symbol
+alert( id === idAgain ); // true
+```
+
+Refer for more details [here](https://javascript.info/symbol)
