@@ -242,3 +242,37 @@ alert( id === idAgain ); // true
 ```
 
 Refer for more details [here](https://javascript.info/symbol)
+
+
+## setTimeout and setInterval
+
+We may decide to execute a function not right now, but at a certain time later. That’s called “scheduling a call”.
+
+There are two methods for it:
+
+- setTimeout allows us to run a function once after the interval of time.
+- setInterval allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
+
+### Nested setTimeout
+The nested setTimeout is a more flexible method than setInterval. This way the next call may be scheduled differently, depending on the results of the current one.
+
+For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds…
+
+Here’s the pseudocode:
+```javascript
+let delay = 5000;
+
+let timerId = setTimeout(function request() {
+  ...send request...
+
+  if (request failed due to server overload) {
+    // increase the interval to the next run
+    delay *= 2;
+  }
+
+  timerId = setTimeout(request, delay);
+
+}, delay);
+```
+The nested setTimeout guarantees the fixed delay (here 100ms).
+Refer more at [here](https://javascript.info/settimeout-setinterval#nested-settimeout)
