@@ -37,7 +37,48 @@ f1.prototype
   >constructor: ƒ f1()
   >__proto__: Object
 ```
-Note: instance of Object has no `.prototype` property.
+Note: instance of Object has no `.prototype` property. instead it has `__proto__`
+
+## The Object Prototype (__proto__ or [[Prototype]])
+This object doesn’t have a prototype, right?
+`let obj = {};`
+Try running this in your browser’s console:
+```javascript
+let obj = {};
+console.log(obj.__proto__); // Play with it!
+```
+Surprisingly, `obj.__proto__` is not null or undefined! Instead, you’ll see a curious object with a bunch of properties, including hasOwnProperty.
+We’re going to call that special object the Object Prototype.
+
+<img src="https://user-images.githubusercontent.com/10495294/102712143-b4e7d100-42e4-11eb-87e5-4b1482178283.png" height="400" width="550" alt="Object prototype" />
+
+### An Object with No Prototype
+
+```javascript
+let weirdo = {
+  __proto__: null
+};
+
+console.log(weirdo.hasOwnProperty); // undefined
+console.log(weirdo.toString); // undefined
+```
+
+### Polluting the prototype
+
+```javascript
+let obj = {};
+obj.__proto__.smell = 'banana';
+```
+
+Above code is valid, and it pollutes the Object prototype. Which is not recommended.
+
+<img src="https://user-images.githubusercontent.com/10495294/102712230-7a326880-42e5-11eb-870e-8b6d5ad2162d.png" height="300" width="550" alt="Object prototype" />
+
+### __proto__ vs prototype
+
+You might be wondering: what in the world is the prototype property? You might have seen it in the MDN page titles.
+Bad news: the prototype property is almost unrelated to the core idea of prototypes! It’s more related to the new operator, which we haven’t used yet.
+Remember that __proto__ means an object’s prototype. The prototype property and the new operator are a whole different topic we’ll skip for now.
 
 
 ## Lexical Scoping: (also called as static scoping)
