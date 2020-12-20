@@ -1,5 +1,5 @@
 # Javascript-learn
-Self learning of Javascript in depth - Note Topics are randomly placed. And it is purely for self reference
+Self learning of Javascript in depth - Note: Topics are randomly placed. And it is purely for self reference
 
 #### Definition: Javascript (JS)
 
@@ -274,5 +274,5 @@ let timerId = setTimeout(function request() {
 
 }, delay);
 ```
-The nested setTimeout guarantees the fixed delay (here 100ms).
+The nested setTimeout guarantees the fixed delay
 Refer more at [here](https://javascript.info/settimeout-setinterval#nested-settimeout)
