@@ -1,5 +1,5 @@
 # Javascript-learn
-Self learning of Javascript in depth
+Self learning of Javascript in depth - Note Topics are randomly placed. And it is purely for self reference
 
 #### Definition: Javascript (JS)
 
