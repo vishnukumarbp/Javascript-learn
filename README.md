@@ -37,6 +37,9 @@ f1.prototype
   >constructor: ƒ f1()
   >__proto__: Object
 ```
+Note: instance of Object has no `.prototype` property.
+
+
 ## Lexical Scoping: (also called as static scoping)
 Lexical Scoping defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.
 
