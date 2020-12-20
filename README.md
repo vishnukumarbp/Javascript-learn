@@ -276,3 +276,29 @@ let timerId = setTimeout(function request() {
 ```
 The nested setTimeout guarantees the fixed delay
 Refer more at [here](https://javascript.info/settimeout-setinterval#nested-settimeout)
+
+
+## Decorators, forwarding with call, apply
+
+Decorator is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
+
+Decorators can be seen as “features” or “aspects” that can be added to a function. We can add one or add many. And all this without changing its code!
+
+To implement cachingDecorator, we studied methods:
+
+`func.call(context, arg1, arg2…)` – calls func with given context and arguments.
+`func.apply(context, args)` – calls func passing context as this and array-like args into a list of arguments.
+
+The generic *call forwarding* is usually done with apply:
+
+```javascript
+let wrapper = function() {
+  return original.apply(this, arguments);
+};
+```
+
+We also saw an example of *method borrowing* when we take a method from an object and call it in the context of another object. It is quite common to take array methods and apply them to arguments. The alternative is to use rest parameters object that is a real array.
+
+There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
+
+[More](https://javascript.info/call-apply-decorators)
