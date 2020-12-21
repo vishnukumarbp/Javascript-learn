@@ -39,7 +39,7 @@ f1.prototype
 ```
 Note: instance of Object has no `.prototype` property. instead it has `__proto__`
 
-## The Object Prototype (__proto__ or [[Prototype]])
+## The Object Prototype (`__proto__` or `[[Prototype]]`)
 This object doesn’t have a prototype, right?
 `let obj = {};`
 Try running this in your browser’s console:
@@ -51,6 +51,11 @@ Surprisingly, `obj.__proto__` is not null or undefined! Instead, you’ll see a 
 We’re going to call that special object the Object Prototype.
 
 <img src="https://user-images.githubusercontent.com/10495294/102712143-b4e7d100-42e4-11eb-87e5-4b1482178283.png" height="400" width="550" alt="Object prototype" />
+
+
+`__proto__` is a historical getter/setter for `[[Prototype]]`
+
+The `__proto__` property is a bit outdated. It exists for historical reasons, modern JavaScript suggests that we should use Object.getPrototypeOf/Object.setPrototypeOf functions instead that get/set the prototype. We’ll also cover these functions later.
 
 ### An Object with No Prototype
 
@@ -74,11 +79,11 @@ Above code is valid, and it pollutes the Object prototype. Which is not recommen
 
 <img src="https://user-images.githubusercontent.com/10495294/102712230-7a326880-42e5-11eb-870e-8b6d5ad2162d.png" height="300" width="550" alt="Object prototype" />
 
-### __proto__ vs prototype
+### `__proto__` vs prototype
 
 You might be wondering: what in the world is the prototype property? You might have seen it in the MDN page titles.
 Bad news: the prototype property is almost unrelated to the core idea of prototypes! It’s more related to the new operator, which we haven’t used yet.
-Remember that __proto__ means an object’s prototype. The prototype property and the new operator are a whole different topic we’ll skip for now.
+Remember that `__proto__` means an object’s prototype. The prototype property and the new operator are related to constructor function. we have covered it above.
 
 
 ## Lexical Scoping: (also called as static scoping)
@@ -346,3 +351,16 @@ We also saw an example of *method borrowing* when we take a method from an objec
 There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
 
 [More](https://javascript.info/call-apply-decorators)
+
+
+## Iterables and array-likes
+Two official terms look similar, but are very different. Please make sure you understand them well to avoid the confusion.
+
+_Iterables_ are objects that implement the Symbol.iterator method, as described above.
+_Array-likes_ are objects that have indexes and length, so they look like arrays.
+When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
+
+For instance, strings are both iterable (for..of works on them) and array-like (they have numeric indexes and length).
+
+But an iterable may not be array-like. And vice versa an array-like may not be iterable.
+
