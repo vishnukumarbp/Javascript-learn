@@ -205,7 +205,9 @@ Lexical Scoping defines how variable names are resolved in nested functions: inn
 Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
 
 
-### Not Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
+### Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
+
+Read more about (`Object.__proto__ === Function.prototype`) // true 😕
 
 
 - Most of the non-primitive type has prototype property where all inherited stuff lives. Math doesn't have prototype.
