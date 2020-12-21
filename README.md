@@ -145,6 +145,57 @@ Similar to extend in class, in javascript, we can inherit methods and properties
 
 Above statement just links (wires/reference) the prototype method of parent to child. It is similar to linking two objects. And downside of this is, When changing anything in child prototype will update parent prototype. (which is the desired behaviour of inheritance)
 
+```javascript
+// Shape - superclass
+function Shape() {
+    this.x = 0;
+    this.y = 0;
+}
+
+// superclass method
+Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info('Shape moved.');
+};
+
+// Rectangle - subclass
+function Rectangle() {
+    Shape.call(this);
+    // call super constructor.
+}
+
+// subclass extends superclass
+Rectangle.prototype = Object.create(Shape.prototype);
+
+
+// Rectangle - subclass
+function Triangle() {
+    Shape.call(this);
+    // call super constructor.
+}
+
+// Create a method on child
+Rectangle.prototype.area = function(x, y) {  
+    console.info('calculating');
+    return x * y
+};
+
+// Reassign constructor
+Rectangle.prototype.constructor = Rectangle;
+
+// Reference parent prototype method to child
+Triangle.prototype = Shape.prototype;
+
+// Create a method on child (which was referencing parent prototype)
+Triangle.prototype.show = function() {  
+    console.info('Showing Triangle');
+};
+```
+
+When you execute above code, you see, method `show` created in `Triangle` is visible/accessible in all `Shape` also in `Rectangle` (This is called polluting prototype).
+But the new method `area` created in `Rectangle` is private to `Rectangle`
+
 
 ## Lexical Scoping: (also called as static scoping)
 Lexical Scoping defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.
