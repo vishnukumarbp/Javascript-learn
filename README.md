@@ -207,8 +207,6 @@ Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
 
 ### Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
 
-Read more about (`Object.__proto__ === Function.prototype`) // true 😕
-
 
 - Most of the non-primitive type has prototype property where all inherited stuff lives. Math doesn't have prototype.
 
@@ -223,11 +221,19 @@ Read more about (`Object.__proto__ === Function.prototype`) // true 😕
 
 <img src="https://user-images.githubusercontent.com/10495294/102735366-3e8cb280-4368-11eb-85d1-bb527a791b8b.png" height="450" width="700" alt="Object prototype" />
 
-Notes:
+### BUT 
 
-[Global object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects) - The term "global objects" (or standard built-in objects) here is not to be confused with the global object. Here, "global objects" refer to objects in the global scope.
+`Object.__proto__ === Function.prototype`) // true 😕
 
-Object.keys are not a prototype method of Object type.
+```javascript
+typeof Object.__proto__
+"function"
+
+Object.__proto__.call
+ƒ call() { [native code] }
+```
+
+Which means, Every Objct is also function ? Read more about it.
 
 
 ## Nullish coalescing operator '??'
