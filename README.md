@@ -92,9 +92,13 @@ If, after the creation, F.prototype property changes (F.prototype = <another obj
 
 
 ## The Object Prototype (`__proto__` or `[[Prototype]]`)
+
 This object doesn’t have a prototype, right?
+
 `let obj = {};`
+
 Try running this in your browser’s console:
+
 ```javascript
 let obj = {};
 console.log(obj.__proto__); // Play with it!
@@ -131,7 +135,10 @@ Above code is valid, and it pollutes the Object prototype. Which is not recommen
 
 <img src="https://user-images.githubusercontent.com/10495294/102712230-7a326880-42e5-11eb-870e-8b6d5ad2162d.png" height="300" width="550" alt="Object prototype" />
 
-### `__proto__` vs prototype
+### `__proto__` vs `prototype`
+
+`__proto__` denotes the currently applied prototype (inherited from)
+`prototype` denotes methods/properties that will be deligated creating instance 
 
 You might be wondering: what in the world is the prototype property? You might have seen it in the MDN page titles.
 Bad news: the prototype property is almost unrelated to the core idea of prototypes! It’s more related to the new operator, which we haven’t used yet.
@@ -229,7 +236,11 @@ Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
 typeof Object.__proto__
 "function"
 
-Object.__proto__.call
+// or
+typeof Object
+"function"
+
+Object.__proto__.call or Object.call
 ƒ call() { [native code] }
 ```
 
