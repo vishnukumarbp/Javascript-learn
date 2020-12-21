@@ -39,6 +39,58 @@ f1.prototype
 ```
 Note: instance of Object has no `.prototype` property. instead it has `__proto__`
 
+
+### Traditional way of wring a class like structure (Constructor Function) vs ES6 Class keyword:
+
+Points to note from the article (attached below):
+
+- body of a function act as constructure in traditional way. 
+- to call parent construcutor (i.e super in ES6), we have to pass reference to parent construcutor (using .call)
+- and to inherit (extend) we need to use Object.create and assign it to child prototype. This is way, we are manually creating the prototype chain between parent and child.
+- use `new` keyword to create instance of the Constructor Function or Class
+
+https://medium.com/@apalshah/javascript-class-difference-between-es5-and-es6-classes-a37b6c90c7f8
+
+
+## new keyword on Constructor function
+
+When a function is executed with new, it does the following steps:
+
+A new empty object is created and assigned to this.
+The function body executes. Usually it modifies this, adds new properties to it.
+The value of this is returned.
+In other words, new User(...) does something like:
+
+```javascript
+function User(name) {
+  // this = {};  (implicitly)
+
+  // add properties to this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (implicitly)
+}
+```
+
+### Return from constructors
+Usually, constructors do not have a return statement. Their task is to write all necessary stuff into this, and it automatically becomes the result.
+
+But if there is a return statement, then the rule is simple:
+
+If return is called with an object, then the object is returned instead of this.
+If return is called with a primitive, it’s ignored.
+In other words, return with an object returns that object, in all other cases this is returned.
+
+
+
+### `F.prototype` only used at `new F` time
+F.prototype property is only used when new F is called, it assigns `[[Prototype]]` of the new object.
+
+If, after the creation, F.prototype property changes (F.prototype = <another object>), then new objects created by new F will have another object as `[[Prototype]]`, but already existing objects keep the old one.
+  
+
+
 ## The Object Prototype (`__proto__` or `[[Prototype]]`)
 This object doesn’t have a prototype, right?
 `let obj = {};`
@@ -86,6 +138,14 @@ Bad news: the prototype property is almost unrelated to the core idea of prototy
 Remember that `__proto__` means an object’s prototype. The prototype property and the new operator are related to constructor function. we have covered it above.
 
 
+## Inheritance
+Similar to extend in class, in javascript, we can inherit methods and properties from other constructor functions using `Object.create(proto, [descriptor])`. Dont get consfused with other synax:
+
+`Child.prototype = Parent.prototype`
+
+Above statement just links (wires/reference) the prototype method of parent to child. It is similar to linking two objects. And downside of this is, When changing anything in child prototype will update parent prototype. (which is the desired behaviour of inheritance)
+
+
 ## Lexical Scoping: (also called as static scoping)
 Lexical Scoping defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.
 
@@ -108,26 +168,13 @@ Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
 - Arrays inherit from `Array.prototype` which inherits from `Object.prototype`.
 `array` <- `Array.prototype` <- `Object.prototype` <- `null`
 
-
+<img src="https://user-images.githubusercontent.com/10495294/102735366-3e8cb280-4368-11eb-85d1-bb527a791b8b.png" height="450" width="700" alt="Object prototype" />
 
 Notes:
 
 [Global object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects) - The term "global objects" (or standard built-in objects) here is not to be confused with the global object. Here, "global objects" refer to objects in the global scope.
 
 Object.keys are not a prototype method of Object type.
-
-
-### Traditional way of wring a class like structure (Constructor Function) vs ES6 Class keyword:
-
-Points to note from the article (attached below):
-
-- body of a function act as constructure in traditional way. 
-- to call parent construcutor (i.e super in ES6), we have to pass reference to parent construcutor (using .call)
-- and to inherit (extend) we need to use Object.create and assign it to child prototype. This is way, we are manually creating the prototype chain between parent and child.
-- use `new` keyword to create instance of the Constructor Function or Class
-
-https://medium.com/@apalshah/javascript-class-difference-between-es5-and-es6-classes-a37b6c90c7f8
-
 
 
 ## Nullish coalescing operator '??'
@@ -197,38 +244,6 @@ https://javascript.info/testing-mocha
 
 </html>
 ```
-
-
-## new keyword on Constructor function
-
-When a function is executed with new, it does the following steps:
-
-A new empty object is created and assigned to this.
-The function body executes. Usually it modifies this, adds new properties to it.
-The value of this is returned.
-In other words, new User(...) does something like:
-
-```javascript
-function User(name) {
-  // this = {};  (implicitly)
-
-  // add properties to this
-  this.name = name;
-  this.isAdmin = false;
-
-  // return this;  (implicitly)
-}
-```
-
-### Return from constructors
-Usually, constructors do not have a return statement. Their task is to write all necessary stuff into this, and it automatically becomes the result.
-
-But if there is a return statement, then the rule is simple:
-
-If return is called with an object, then the object is returned instead of this.
-If return is called with a primitive, it’s ignored.
-In other words, return with an object returns that object, in all other cases this is returned.
-
 
 ## Optional chaining '?.'
 
