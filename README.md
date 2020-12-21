@@ -357,7 +357,9 @@ There are many decorators there in the wild. Check how well you got them by solv
 Two official terms look similar, but are very different. Please make sure you understand them well to avoid the confusion.
 
 _Iterables_ are objects that implement the Symbol.iterator method, as described above.
+
 _Array-likes_ are objects that have indexes and length, so they look like arrays.
+
 When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
 
 For instance, strings are both iterable (for..of works on them) and array-like (they have numeric indexes and length).
