@@ -40,6 +40,45 @@ f1.prototype
 Note: instance of Object has no `.prototype` property. instead it has `__proto__`
 
 
+Core points to remember
+
+Object
+
+```javascript
+typeof Object.__proto__
+"function"
+
+typeof Object.prototype
+"object"
+
+typeof Object.prototype.__proto__ // is null
+"object" // typeof null
+
+Object.prototype.__proto__
+null
+
+Object.prototype.__proto__.__proto__ // TypeError: Cannot read property '__proto__' of null
+```
+
+Function
+
+```javascript
+typeof Function.__proto__
+"function"
+
+typeof Function.prototype
+"function"
+
+typeof Function.prototype.__proto__
+"object"
+
+typeof Function.prototype.__proto__.__proto__ // is null
+"object" // typeof null
+```
+
+**Note: Math Object is not a function object, i.e Math object doesnt have properties/methods of Function**
+
+
 ### Traditional way of wring a class like structure (Constructor Function) vs ES6 Class keyword:
 
 Points to note from the article (attached below):
