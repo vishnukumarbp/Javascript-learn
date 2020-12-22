@@ -76,7 +76,27 @@ typeof Function.prototype.__proto__.__proto__ // is null
 "object" // typeof null
 ```
 
-**Note: Math Object is not a function object, i.e Math object doesnt have properties/methods of Function**
+**Note: Math Object is not a function object, i.e Math object doesnt have constructor function, so it doesnt have properties/methods (name/call) of Function**
+ie, when creating instance of math we get error
+`let bc = new Math(); // Uncaught TypeError: Math is not a constructor`
+
+
+### Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
+
+- All primitive types have a corresponding Constructor Function wiz. `Array, Number, String, Boolean, RegExp`. As all functions are objects, they are objects too. So we can call them Constructor Function Objects.
+
+- Most of the non-primitive type has `prototype` property where all inherited stuff lives. Math doesn't have prototype.
+
+- All `objects` inherit from `Object.prototype` which inherits from null.
+`object` <- `Object.prototype` <- `null`
+
+- All native functions inherit from `Function.prototype` which inherits from `Object.prototype`.
+`function` <- `Function.prototype` <- `Object.prototype` <- `null`
+
+- Arrays inherit from `Array.prototype` which inherits from `Object.prototype`.
+`array` <- `Array.prototype` <- `Object.prototype` <- `null`
+
+<img src="https://user-images.githubusercontent.com/10495294/102735366-3e8cb280-4368-11eb-85d1-bb527a791b8b.png" height="450" width="700" alt="Object prototype" />
 
 
 ### Traditional way of wring a class like structure (Constructor Function) vs ES6 Class keyword:
@@ -249,41 +269,6 @@ Lexical Scoping defines how variable names are resolved in nested functions: inn
 "Even if the parent function has returned" is called **closure**
 
 Refer: [SO](https://stackoverflow.com/questions/1047454/what-is-lexical-scope)
-
-
-### Every Object is a function and every function is Object [refer](https://stackoverflow.com/questions/3449596/every-object-is-a-function-and-every-function-is-object-which-is-correct)
-
-
-- Most of the non-primitive type has prototype property where all inherited stuff lives. Math doesn't have prototype.
-
-- All `objects` inherit from `Object.prototype` which inherits from null.
-`object` <- `Object.prototype` <- `null`
-
-- All native functions inherit from `Function.prototype` which inherits from `Object.prototype`.
-`function` <- `Function.prototype` <- `Object.prototype` <- `null`
-
-- Arrays inherit from `Array.prototype` which inherits from `Object.prototype`.
-`array` <- `Array.prototype` <- `Object.prototype` <- `null`
-
-<img src="https://user-images.githubusercontent.com/10495294/102735366-3e8cb280-4368-11eb-85d1-bb527a791b8b.png" height="450" width="700" alt="Object prototype" />
-
-### BUT 
-
-`Object.__proto__ === Function.prototype`) // true 😕
-
-```javascript
-typeof Object.__proto__
-"function"
-
-// or
-typeof Object
-"function"
-
-Object.__proto__.call or Object.call
-ƒ call() { [native code] }
-```
-
-Which means, Every Objct is also function ? Read more about it.
 
 
 ## Nullish coalescing operator '??'
