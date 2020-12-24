@@ -477,5 +477,7 @@ But an iterable may not be array-like. And vice versa an array-like may not be i
 
 # Fancy keywords
 `[[FunctionKind]]: "classContructor"` - when class syntax is used, engine uses this property to identify the how it is created to limit some operation like "calling class without `new`" or to print class like code when print
+
 `[[ConstructorKind]]:"derived"` - derived constructor using class extend to force derived constructor to call parent constructor using `super`
+
 `[[HomeObject]]` - [read here](https://javascript.info/class-inheritance#homeobject)
